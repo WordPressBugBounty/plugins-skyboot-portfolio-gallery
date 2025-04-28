@@ -1,31 +1,40 @@
-=== Elementor Image Gallery Plugin ( Masonry Gallery, Elementor Gallery Plugin With Captions, Elementor Portfolio Gallery Widget, Filterable Gallery ) ===
+=== Elementor Image Gallery Plugin ( Photo Gallery, Masonry Gallery, Elementor Gallery, Portfolio Gallery, Filterable Gallery ) ===
 Contributors: skybootstrap
-Tags: elementor,elementor addons,gallery,photo gallery,image gallery,wordpress gallery plugin,responsive gallery,lightbox,best gallery plugin,filterable gallery,portfolio,Masonry
+Tags: image gallery, photo gallery, portfolio gallery, wordpress gallery plugin, elementor widget
+Author URI:  https://skybootstrap.com
+Plugin URI:  https://skybootstrap.com/plugins/portfolio-gallery
+Donate Link: https://buymeacoffee.com/skybootstrap
 Requires at least: 5.0
-Requires PHP: 5.2.4
-Tested up to: 6.2.2
-Stable tag: 1.0.3
+Requires PHP: 7.0
+Tested up to: 6.8
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
+Skyboot Elementor Image Gallery Plugin ( Elementor Photo Gallery, Masonry Gallery, Elementor Gallery, Portfolio Gallery, Filterable Gallery )
+
 == Description ==
 
-Skyboot Elementor Image Gallery plugin is a portfolio gallery, filterable gallery,elementor filterable gallery,gallery elementor,elementor masonry gallery,elementor photo gallery,elementor gallery widget,elementor lightbox gallery,elementor image lightbox,masonry gallery elementor,image gallery elementor, and masonry image gallery widget for Elementor Page Builder that makes it easy to showcase any number of portfolio and allow the user to easily create a image gallery section in a minute. The Elementor gallery plugin is fully FREE.
+Skyboot Elementor Image Gallery plugin is a powerful portfolio gallery, filterable gallery, Elementor filterable gallery, gallery Elementor, Elementor masonry gallery, Elementor photo gallery, Elementor gallery widget, Elementor lightbox gallery, Elementor image lightbox, masonry gallery Elementor, image gallery Elementor and masonry image gallery widget for Elementor Page Builder. Showcase unlimited portfolios and build stunning image gallery sections in minutes—fully FREE.
+
 👉 Click for [Live Demo](https://skybootstrap.com/plugins/portfolio-gallery)
+👉 Our Website: [https://skybootstrap.com](https://skybootstrap.com)
+👉 Our Blog: [Click Here](https://skybootstrap.com/learning/)
+👉 Subscribe Our YouTube Channel: [Subscribe Now](https://skybootstrap.com/go/skybootstrap-youtube-channel)
+👉 Like Facebook Page: [Like Now](https://www.facebook.com/Skybootstrap)
+👉 Our SaaS Product: [TLinky](https://tlinky.com/) - The #1 Link Management Platform. TLinky's Core Solutions: URL Shortener, QR Code Generator, & Link In Bio Builder.
+👉 Love our plugin? Support our work by [buying me a coffee](https://buymeacoffee.com/skybootstrap)! Your support keeps us motivated to create and improve. Thank you!
 
-Skyboot Elementor image gallery addon is a fun, flexible, and easy way to display your images or recent work on your website. There are lots of options, and this is a comprehensive look at all of them. With this elementor image widget plugin, Also you can add some things like: masonry gallery, Grid images section anywhere to your web pages.
+Skyboot's Elementor Image Gallery Addon brings a fun, flexible, and intuitive way to showcase your images or recent work. As a comprehensive Elementor gallery widget plugin, it offers everything you need masonry gallery layouts, responsive grid sections, filterable galleries, and a seamless lightbox experience. Whether you're building a portfolio gallery or a simple photo gallery elementor section, Skyboot makes it effortless to craft stunning image galleries in minutes.
 
-The Image gallery Elementor widget with captions Adding captions to the images in your gallery is a great way to help your website visitors better understand your content and keep them on your website longer. With the image gellery addon, you can easily insert captions on your each images that you can edit in the backend. It has been developed with lots of user experience in mind.
+==❤️ Top Key Features of Skyboot Elementor Photo Gallery Plugin==
 
-To create a photo gallery in a Elementor website, simply install this filterable gallery elementor besed plugin. After install the plugin a custom post type will be visible on your dashboard named "Portfolio Gallery". Go to the Portfolio Gallery menu and add new item same as like as create a blog post. Use the title, content and thumbnail image and select the category then publish your portfolio. 
+* Filterable Gallery & Portfolio: Let visitors sort projects by category, thanks to our Elementor filterable gallery plugin.
+* Masonry & Grid Layouts: Choose between sleek masonry image gallery or classic grid images section, with adjustable columns and gutter control.
+* Lightbox & Captions: Enhance engagement with an Elementor lightbox gallery that supports image captions—easily editable from the backend.
+* Hover & Overlay Effects: Add polish with hover direction effects, gradient overlays, image zoom, solid backgrounds, and more.
 
-This plugin can be the best way to add an image gallery to your website with supported gallery lightbox for ever images. One of the most popular elementor gallery lightbox pluhin for building WordPress content pages is Elementor. Elementor makes it easy to build complex, beautiful content pages that can be accessed anywhere. With The image gallery plugin you can build beautifully designed galleries on your WordPress site.
-
-If you want to make a masonry style gallery or Grid style gallery for your WordPress sites, checked on.
-Take a look at this photo gallery plugin. You can manage your column control for every layout. You can make style such as: Hover direction effect, Gradient Overlay, Image Zoom Effect, No Gutter, Solid Background etc..
-
-
-##Features of Elementor Gallery Plugin with lightbox:##
+==❤️ All Features List of Elementor Gallery Plugin with lightbox:==
 ✅ Professional Elementor Portfolio Builder
 ✅ Elementor Images gallery with Lightbox
 ✅ Masonary Gallery Layout
@@ -52,26 +61,33 @@ Take a look at this photo gallery plugin. You can manage your column control for
 
 👉 Click for [Live Demo](https://skybootstrap.com/plugins/portfolio-gallery)
 
-✅ [Contact for Support](https://skybootstrap.com/plugins/portfolio-gallery/support/)
+✅ [Create Support Ticket](https://wordpress.org/support/plugin/skyboot-portfolio-gallery/)
 🌐 [Connect with Our Facebook Page](https://www.facebook.com/Skybootstrap)
 ✅ [Subscribe Our Youtube Channel](https://www.youtube.com/channel/UCHMvdXjI7KDbf4F6LIlaamQ)
 🌐 Our Website: [skybootstrap](https://skybootstrap.com)
 
-##How to install Elementor photo gallery plugin using FTP?##
--> First Download the plugin.
--> Unzip the Downloaded zip file.
--> Login FTP account using Filezilla or alternative.
--> Browse the folder "/wp-content/plugins/"
--> Create a Folder name "skyboot-portfolio-gallery"
--> Upload your unzip plugin file to the folder.
--> Go go plugin menu from your dashboard and active the plugin.
--> Now you will see a admin menu named of "Portfolio Gallery"
+==Easy Setup & Management==
+
+* Search "Skyboot gallery " from your WordPress plugin menu. 
+* Install the free Elementor gallery plugin and activate. You will see "Portfolio Gallery" menu in your dashboard.
+* Add new items just like blog posts—enter a title, content, thumbnail, and select your category.
+* Publish and place the image gallery elementor widget named "Skyboot: Portfolio" anywhere on your page.
+* Skyboot Elementor Image Gallery Addon is the best gallery plugin for WordPress, delivering a fully FREE, user-friendly solution for building filterable, responsive, and visually striking galleries every time.
+
+==How to install Elementor photo gallery plugin using FTP?==
+-> Download and unzip the plugin.
+-> Connect to your site via FTP.
+-> Open /wp-content/plugins/.
+-> Create a folder named skyboot-portfolio-gallery.
+-> Upload the unzipped plugin files into that folder.
+-> In your WordPress dashboard go to Plugins and click Activate under Skyboot Portfolio Gallery.
+-> You'll now see a "Portfolio Gallery" menu in the admin sidebar.
 
 == ❤ Love free portfolio image gallery plugin for Elementor? ❤ ==
 
 👉 Rate us on [WordPress](https://wordpress.org/plugins/skyboot-portfolio-gallery)
 
-Skyboot Elementor Gallery plugin also could be used as elementor gallery grid,elementor masonry grid,elementor portfolio grid,elementor filtrable grid,elementor photo grid,elementor media grid,elementor portfolio gallery,elementor photo gallery,elementor image gallery,Elementor widget,Photo Grid widget,elementor grid maker,responsive iamge grid gallery,grid iamge filters,isotope filter,isotope image gallery,elementor addons,Image grid addons,hover background,hover Gradient background,masonry gallery wordpress,filterable gallery wordpress,portfolio image gallery,portfolio filter gallery,photo gallery,gallery of image,picture gallery,image gallery css,css image gallery,photo gallery website,wordpress photo gallery,photo gallery wordpress,image gallery on website,image gallery in wordpress,image gallery for website,wordpress image gallery, light box plugin, and much more.
+Skyboot Elementor Gallery plugin is the ultimate Elementor widget and addon for building responsive image and media grids—gallery grid, masonry grid, portfolio grid, filterable isotope grid, photo grid and media grid on your WordPress site. It includes hover background and gradient overlays, isotope filters, CSS-based lightbox support and unlimited customization—perfect for portfolio image galleries, photo galleries, picture galleries and more.
 
 == 💝 Our Other plugins 💝 == 
 
@@ -79,7 +95,7 @@ Skyboot Elementor Gallery plugin also could be used as elementor gallery grid,el
 Skyboot Custom Icons for Elementor is a Elementor Icons library plugin. With the Elementor Icons plugin, you can increase your Elementor Icons library. The Elementor custom icons plugin has more than 14055+ icons from the different icon packs. like:  
 What’s icons are included in the custom Elementor icons plugin: Brands icons (934) ,Devicons Icons (191) ,Elegant Icon (360) ,Elusive Icons (303) ,Icofont (2095) ,Ico Moon (491) ,Iconic Icons (172) ,Ion icons (696) ,Line Awesome (2004) ,Line Icon (511) ,Linear icons (170) ,Material Design Icons (5346) ,Simple Line Icon (189) ,Themify Icon (351) ,Open Iconic (22)
 
-👉 [View Elementor Icons Plugin](https://wordpress.org/plugins/skyboot-custom-icons-for-elementor/)
+👉 [Install Elementor Icons Plugin](https://wordpress.org/plugins/skyboot-custom-icons-for-elementor/)
 
 == 🔥 Frequently Asked Questions ==
 = What is a photo gallery widget in Elementor ? =
@@ -94,6 +110,10 @@ If you are building a website with Elementor and you want to create a photo gall
 == Screenshots ==
 
 == Changelog ==
+= 1.0.4 =
+* Tested with WordPress 6.8
+* Compatible with Latest version of Elementor 
+
 = 1.0.3 =
 * Tested with WordPress 6.2.2
 * Compatible with Latest version of Elementor  

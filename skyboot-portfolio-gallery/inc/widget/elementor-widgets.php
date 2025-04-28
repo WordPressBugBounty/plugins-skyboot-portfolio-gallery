@@ -225,10 +225,67 @@ class Skyboot_Portfolio_Elementor_widget extends \Elementor\Widget_Base {
                     ]
                 ]
             );
+            /*
             $this->add_control(
                 'set_icon',
                 [
-                    'label' => __( 'Set Icon', 'plugin-domain' ),
+                    'label' => esc_html__( 'Set Icon', 'skyboot-pg' ),
+                    'type' => Controls_Manager::SELECT,
+                    'default' => 'fa fa-photo',
+                    'options' => [
+                        'fa fa-photo' => esc_html__( 'fa fa-photo', 'skyboot-pg' ),
+                        'fa fa-camera' => esc_html__( 'fa fa-camera', 'skyboot-pg' ),
+                        'fa fa-camera-retro' => esc_html__( 'fa fa-camera-retro', 'skyboot-pg' ),
+                        'fa fa-link' => esc_html__( 'fa fa-link', 'skyboot-pg' ),
+                        'fa fa-arrows' => esc_html__( 'fa fa-arrows', 'skyboot-pg' ),
+                        'fa fa-arrows-alt' => esc_html__( 'fa fa-arrows-alt', 'skyboot-pg' ),
+                        'fa fa-eye' => esc_html__( 'fa fa-eye', 'skyboot-pg' ),
+                        'fa fa-eye-slash' => esc_html__( 'fa fa-eye-slash', 'skyboot-pg' ),
+                        'fa fa-film' => esc_html__( 'fa fa-film', 'skyboot-pg' ),
+                        'fa fa-folder-open' => esc_html__( 'fa fa-folder-open', 'skyboot-pg' ),
+                        'fa fa-folder-open-o' => esc_html__( 'fa fa-folder-open-o', 'skyboot-pg' ),
+                        'fa fa-search' => esc_html__( 'fa fa-search', 'skyboot-pg' ),
+                    ],
+                ]
+            );*/
+
+            $this->add_control(
+                'set_icon',
+                [
+                    'label' => esc_html__( 'Choose Icon', 'skyboot-pg' ),
+                    'type' => Controls_Manager::ICONS,
+                    'default' => [
+                        'value' => 'fas fa-photo',
+                        'library' => 'fa-solid',
+                    ],
+                    'recommended' => [
+                        'fa-solid' => [
+                            'photo',
+                            'camera',
+                            'camera-retro',
+                            'fa-link',
+                            'arrows',
+                            'arrows-alt',
+                            'eye',
+                            'eye-slash',
+                            'film',
+                            'folder-open',
+                            'folder-o',
+                            'folder-open-o',
+                            'search'
+                        ],
+                        'fa-regular' => [
+                            'eys',
+                        ],
+                    ],
+                ]
+            );            
+
+            /*
+            $this->add_control(
+                'set_icon',
+                [
+                    'label' => __( 'Set Icon', 'skyboot-pg' ),
                     'type' => Controls_Manager::ICON,
                     'include' => [
                         'fa fa-camera',
@@ -248,7 +305,9 @@ class Skyboot_Portfolio_Elementor_widget extends \Elementor\Widget_Base {
                     ],
                     'default' => 'fa fa-photo',
                 ]
-            );
+            );*/
+
+
             $this->add_control(
                 'enable_title',
                 [
@@ -612,7 +671,7 @@ class Skyboot_Portfolio_Elementor_widget extends \Elementor\Widget_Base {
                                         <a class="skb-popup vbox-item"
                                         data-gall="gall1" <?php if( $enable_popup_content == 'yes' ): ?>data-title="<?php the_content(); ?>"<?php endif; ?>
                                         href="<?php echo wp_get_attachment_url( get_post_thumbnail_id( get_the_ID() ), 'full' );?>">
-                                            <i class="<?php echo esc_html( $set_icon ); ?>"></i>
+                                        <?php Icons_Manager::render_icon( $settings['set_icon'], [ 'aria-hidden' => 'true' ] ); ?>
                                         </a>
                                     </div>
                                     <?php endif; ?>
