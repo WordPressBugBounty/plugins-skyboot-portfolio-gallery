@@ -225,88 +225,36 @@ class Skyboot_Portfolio_Elementor_widget extends \Elementor\Widget_Base {
                     ]
                 ]
             );
-            /*
-            $this->add_control(
-                'set_icon',
-                [
-                    'label' => esc_html__( 'Set Icon', 'skyboot-pg' ),
-                    'type' => Controls_Manager::SELECT,
-                    'default' => 'fa fa-photo',
-                    'options' => [
-                        'fa fa-photo' => esc_html__( 'fa fa-photo', 'skyboot-pg' ),
-                        'fa fa-camera' => esc_html__( 'fa fa-camera', 'skyboot-pg' ),
-                        'fa fa-camera-retro' => esc_html__( 'fa fa-camera-retro', 'skyboot-pg' ),
-                        'fa fa-link' => esc_html__( 'fa fa-link', 'skyboot-pg' ),
-                        'fa fa-arrows' => esc_html__( 'fa fa-arrows', 'skyboot-pg' ),
-                        'fa fa-arrows-alt' => esc_html__( 'fa fa-arrows-alt', 'skyboot-pg' ),
-                        'fa fa-eye' => esc_html__( 'fa fa-eye', 'skyboot-pg' ),
-                        'fa fa-eye-slash' => esc_html__( 'fa fa-eye-slash', 'skyboot-pg' ),
-                        'fa fa-film' => esc_html__( 'fa fa-film', 'skyboot-pg' ),
-                        'fa fa-folder-open' => esc_html__( 'fa fa-folder-open', 'skyboot-pg' ),
-                        'fa fa-folder-open-o' => esc_html__( 'fa fa-folder-open-o', 'skyboot-pg' ),
-                        'fa fa-search' => esc_html__( 'fa fa-search', 'skyboot-pg' ),
-                    ],
-                ]
-            );*/
-
+         
             $this->add_control(
                 'set_icon',
                 [
                     'label' => esc_html__( 'Choose Icon', 'skyboot-pg' ),
-                    'type' => Controls_Manager::ICONS,
+                    'type'  => Controls_Manager::ICONS,
                     'default' => [
-                        'value' => 'fas fa-photo',
-                        'library' => 'fa-solid',
+                        'value'    => 'fas fa-camera',
+                        'library'  => 'fa-solid',
                     ],
                     'recommended' => [
                         'fa-solid' => [
-                            'photo',
                             'camera',
                             'camera-retro',
-                            'fa-link',
+                            'link',
                             'arrows',
                             'arrows-alt',
                             'eye',
                             'eye-slash',
                             'film',
                             'folder-open',
-                            'folder-o',
-                            'folder-open-o',
-                            'search'
+                            'search',
                         ],
                         'fa-regular' => [
-                            'eys',
+                            'eye',
                         ],
                     ],
                 ]
-            );            
-
-            /*
-            $this->add_control(
-                'set_icon',
-                [
-                    'label' => __( 'Set Icon', 'skyboot-pg' ),
-                    'type' => Controls_Manager::ICON,
-                    'include' => [
-                        'fa fa-camera',
-                        'fa fa-camera-retro',
-                        'fa fa-link',
-                        'fa fa-chain',
-                        'fa fa-photo',
-                        'fa fa-arrows',
-                        'fa fa-arrows-alt',
-                        'fa fa-eye',
-                        'fa fa-eye-slash',
-                        'fa fa-film',
-                        'fa fa-folder-open',
-                        'fa fa-folder-open-o',
-                        'fa fa-search',
-
-                    ],
-                    'default' => 'fa fa-photo',
-                ]
-            );*/
-
+            );
+      
 
             $this->add_control(
                 'enable_title',
@@ -502,7 +450,7 @@ class Skyboot_Portfolio_Elementor_widget extends \Elementor\Widget_Base {
                 'label' => __( 'Item Icon Color', 'skyboot-pg' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                        '{{WRAPPER}} .skb-gallery-icon i' => 'color: {{VALUE}};',
+                        '{{WRAPPER}} .skb-gallery-icon svg' => 'fill: {{VALUE}};',
                 ],
                 'default' => '#ffffff',
                 'separator' => 'after'
@@ -630,67 +578,93 @@ class Skyboot_Portfolio_Elementor_widget extends \Elementor\Widget_Base {
             <div class="skb-grid new">
                 <?php
                     // WP_Query arguments
-                    $args = array (
-                        'post_type'					=> 'skyboot_portfolio',
-                        'post_status'				=> 'publish',
-                        'taxonomy' 					=> 'skyboot_portfolio_cat', 
-                        'posts_per_page'			=> !empty( $settings['post_limit'] ) ? $settings['post_limit'] : 12,
-                        'order'						=> $postorder,
-                        'orderby'					=> $orderby
+                    $args = array(
+                        'post_type'      => 'skyboot_portfolio',
+                        'post_status'    => 'publish',
+                        'taxonomy'       => 'skyboot_portfolio_cat',
+                        'posts_per_page' => ! empty( $settings['post_limit'] ) ? absint( $settings['post_limit'] ) : 12,
+                        'order'          => ( isset( $postorder ) && in_array( $postorder, array( 'ASC', 'DESC' ), true ) ) ? $postorder : 'DESC',
+                        'orderby'        => ( isset( $orderby ) && in_array( $orderby, array( 'date','title','menu_order','rand' ), true ) ) ? $orderby : 'date',
                     );
 
-                    // The Query
+                    // WP Query
                     $skyboot_portfolio = new \WP_Query( $args );
 
-                    // The Loop
+                    // Item Loop
                     if ( $skyboot_portfolio->have_posts() ) :
                         while ( $skyboot_portfolio->have_posts() ) :
-                            $skyboot_portfolio->the_post(); 
+                            $skyboot_portfolio->the_post();
 
-                            $skyboot_portfolio_categories = get_the_terms(get_the_id(),'skyboot_portfolio_cat');
-                        
+                            $skyboot_portfolio_categories = get_the_terms( get_the_ID(), 'skyboot_portfolio_cat' );
+                            $term_slugs = array();
+
+                            if ( ! is_wp_error( $skyboot_portfolio_categories ) && ! empty( $skyboot_portfolio_categories ) && is_array( $skyboot_portfolio_categories ) ) {
+                                foreach ( $skyboot_portfolio_categories as $single_slug ) {
+                                    if ( $single_slug && is_object( $single_slug ) && isset( $single_slug->slug ) ) {
+                                        $term_slugs[] = sanitize_html_class( $single_slug->slug );
+                                    }                                    
+                                }
+                            }
+
+
+                            $term_classes = implode( ' ', $term_slugs );
+
+                            $col = isset( $settings['column_count'] ) ? absint( $settings['column_count'] ) : 4;
                         ?>
-
-                        <div class="skb-col-sm-<?php echo esc_html( $column_count ); ?> skb-col-xs-12 skb-grid-item <?php foreach( (array) $skyboot_portfolio_categories as $single_slug){echo $single_slug->slug. ' ';}   ?>">
-                            <div class="skb-gallery-item <?php echo $enable_mouse_hover_image_zoom == "yes" ? "image-mouse-hover" : " "; ?>">
-                                
-                                <?php if( $enable_overlay =="yes" ) : ?>
-                                <div class="<?php echo $overlay_type=="direction_hover" ? "skb-direction-hover-effect": 'normal-effect'; ?> hover-effect-bg"></div>
-                                <?php endif; ?>
-
-                                <?php if( has_post_thumbnail() ) { ?>
-                                <div class="skb-gallery-image">
-                                    <img src="<?php echo wp_get_attachment_url( get_post_thumbnail_id( get_the_ID() ), 'full' );?>" alt="">
-                                </div>
-                                <?php } ?>
-
-                                <div class="gallery-text text-center">
-
-                                    <?php if( $enable_popup == 'yes' ) : ?>
-                                    <div class="skb-gallery-icon">
-                                        <a class="skb-popup vbox-item"
-                                        data-gall="gall1" <?php if( $enable_popup_content == 'yes' ): ?>data-title="<?php the_content(); ?>"<?php endif; ?>
-                                        href="<?php echo wp_get_attachment_url( get_post_thumbnail_id( get_the_ID() ), 'full' );?>">
-                                        <?php Icons_Manager::render_icon( $settings['set_icon'], [ 'aria-hidden' => 'true' ] ); ?>
-                                        </a>
-                                    </div>
+                            <div class="skb-col-sm-<?php echo esc_attr( $col ); ?> skb-col-xs-12 skb-grid-item <?php echo esc_attr( $term_classes ); ?>">
+                                <div class="skb-gallery-item <?php echo ( isset( $enable_mouse_hover_image_zoom ) && 'yes' === $enable_mouse_hover_image_zoom ) ? 'image-mouse-hover' : ''; ?>">
+                                    
+                                    <?php if ( isset( $enable_overlay ) && 'yes' === $enable_overlay ) : ?>
+                                        <div class="<?php echo ( isset( $overlay_type ) && 'direction_hover' === $overlay_type ) ? 'skb-direction-hover-effect' : 'normal-effect'; ?> hover-effect-bg"></div>
                                     <?php endif; ?>
 
-                                    <div class="skb-gallery-inner-content">
-                                        
-                                        <?php if( $enable_title == 'yes' ) : ?>
-                                        <h4><?php the_title(); ?></h4>
-                                        <?php endif; ?>
-                                        
-                                        <?php if( $enable_sub_title == 'yes' ) : ?>
-                                        <span><?php the_excerpt(); ?></span>
+                                    <?php if ( has_post_thumbnail() ) : ?>
+                                        <div class="skb-gallery-image">
+                                            <img src="<?php echo esc_url( wp_get_attachment_url( get_post_thumbnail_id( get_the_ID() ), 'full' ) ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>">
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <div class="gallery-text text-center">
+
+                                        <?php
+                                            $excerpt_or_content = has_excerpt() 
+                                                ? get_the_excerpt() 
+                                                : wp_trim_words( strip_shortcodes( get_the_content() ), 30 );
+
+                                            $excerpt_or_content_safe = wp_strip_all_tags( $excerpt_or_content );
+                                        ?>                                    
+
+                                        <?php if ( isset( $enable_popup ) && 'yes' === $enable_popup ) : ?>
+                                            <div class="skb-gallery-icon">
+                                                <a class="skb-popup vbox-item"
+                                                data-gall="gall1"
+                                                <?php if ( isset( $enable_popup_content ) && 'yes' === $enable_popup_content ) : ?>
+                                                    data-title="<?php echo esc_attr( $excerpt_or_content_safe ); ?>"
+                                                <?php endif; ?>
+                                                href="<?php echo esc_url( wp_get_attachment_url( get_post_thumbnail_id( get_the_ID() ), 'full' ) ); ?>">
+                                                <?php \Elementor\Icons_Manager::render_icon( $settings['set_icon'], [ 'aria-hidden' => 'true' ] ); ?>
+                                                </a>
+                                            </div>                                            
                                         <?php endif; ?>
 
+                                        <div class="skb-gallery-inner-content">
+                                            <?php if ( isset( $enable_title ) && 'yes' === $enable_title ) : ?>
+                                                <h4><?php echo esc_html( get_the_title() ); ?></h4>
+                                            <?php endif; ?>
+
+                                            <?php if ( isset( $enable_sub_title ) && 'yes' === $enable_sub_title ) : ?>
+                                                <span><?php echo esc_html( $excerpt_or_content_safe ); ?></span>
+                                            <?php endif; ?>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php endwhile; wp_reset_postdata(); wp_reset_query(); endif; ?>
+                        <?php
+                        endwhile;
+                        wp_reset_postdata();
+                    endif;
+                ?>
+
 
             </div>
         </div>

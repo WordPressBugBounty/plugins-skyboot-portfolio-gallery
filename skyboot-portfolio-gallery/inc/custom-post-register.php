@@ -1,5 +1,7 @@
 <?php
-if( !defined('ABSPATH') ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
 /*---------------------------
 *    Register Post type
@@ -18,7 +20,7 @@ if ( ! class_exists( 'Skyboot_Portfolio_Gallery_Post_Type') ) {
         // Item
         $labels = array(
             'name'                  => _x( 'Portfolio', 'Post Type General Name', 'skyboot-pg' ),
-            'singular_name'         => _x( 'portfolio', 'Post Type Singular Name', 'skyboot-pg' ),
+            'singular_name'         => _x( 'Portfolio', 'Post Type Singular Name', 'skyboot-pg' ),
             'menu_name'             => __( 'Portfolio Gallery', 'skyboot-pg' ),
             'name_admin_bar'        => __( 'Portfolio Gallery', 'skyboot-pg' ),
             'archives'              => __( 'Item Archives', 'skyboot-pg' ),

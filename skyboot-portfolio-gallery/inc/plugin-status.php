@@ -22,21 +22,31 @@ add_action( 'plugins_loaded', 'skybootpostfoliogallery_load_plugin' );
 // Check Elementor install or not.
 function skybootpostfoliogallery_check_elementor_status(){
     $elementor = 'elementor/elementor.php';
-    if( skybootpostfoliogallery_is_plugins_active( $elementor ) ) {
-        if( ! current_user_can( 'activate_plugins' ) ) {
+    if ( skybootpostfoliogallery_is_plugins_active( $elementor ) ) {    
+        if ( ! current_user_can( 'activate_plugins' ) ) {
             return;
         }
-        $activation_url = wp_nonce_url( 'plugins.php?action=activate&amp;plugin=' . $elementor . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $elementor );
 
-        $message = '<p>' . __( 'Skyboot Portfolio Gallery addons are not working because you need to activate the Elementor plugin.', 'skyboot-pg' ) . '</p>';
-        $message .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $activation_url, __( 'Activate Elementor Now', 'skyboot-pg' ) ) . '</p>';
+        $activation_url = wp_nonce_url(
+            'plugins.php?action=activate&plugin=' . $elementor . '&plugin_status=all&paged=1&s',
+            'activate-plugin_' . $elementor
+        );
+
+        $message = '<p>' . __( 'Skyboot Portfolio Gallery for Elementor is not working because the Elementor plugin is not activated.', 'skyboot-pg' ) . '</p>';
+        $message .= '<p>' . sprintf(
+            '<a href="%s" class="button-primary">%s</a>',
+            esc_url( $activation_url ),
+            esc_html__( 'Activate Elementor Now', 'skyboot-pg' )
+        ) . '</p>';
+
     } else {
         if ( ! current_user_can( 'install_plugins' ) ) {
             return;
-        }
+        }        
         $install_url = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=elementor' ), 'install-plugin_elementor' );
-        $message = '<p>' . __( 'Skyboot Portfolio Gallery addons are not working because you need to install the Elementor plugin', 'skyboot-pg' ) . '</p>';
+        $message = '<p>' . __( 'Skyboot Portfolio Gallery for Elementor is not working because the Elementor plugin is not install.', 'skyboot-pg' ) . '</p>';
         $message .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $install_url, __( 'Install Elementor Now', 'skyboot-pg' ) ) . '</p>';
     }
-    echo '<div class="error"><p>' . $message . '</p></div>';
+    echo '<div class="error">' . $message . '</div>';
+
 }
