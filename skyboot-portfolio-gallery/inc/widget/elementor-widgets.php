@@ -44,7 +44,7 @@ class Skyboot_Portfolio_Elementor_widget extends \Elementor\Widget_Base {
                     'label' => __( 'Heading', 'skyboot-pg' ),
                     'type' => Controls_Manager::TEXT,
                     'default' => 'Photo Gallery',
-                    'label_block' => 'true',
+                    'label_block' => true,
                     'title' => __( 'Heading', 'skyboot-pg' ),
                     'condition' => [
                         'enable_sec_heading' => 'yes',
@@ -57,7 +57,7 @@ class Skyboot_Portfolio_Elementor_widget extends \Elementor\Widget_Base {
                     'label' => __( 'Sub Heading', 'skyboot-pg' ),
                     'type' => Controls_Manager::TEXTAREA,
                     'default' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod',
-                    'label_block' => 'true',
+                    'label_block' => true,
                     'title' => __( 'Sub Heading', 'skyboot-pg' ),
                     'condition' => [
                         'enable_sec_heading' => 'yes',
@@ -113,7 +113,7 @@ class Skyboot_Portfolio_Elementor_widget extends \Elementor\Widget_Base {
                     'label' => __( 'Post Limit', 'skyboot-pg' ),
                     'type' => Controls_Manager::NUMBER,
                     'default' => 12,
-                    'label_block' => 'true',
+                    'label_block' => true,
                     'title' => __( 'Post Limit', 'skyboot-pg' ),
                     'separator'=>'before'
                 ]
@@ -164,11 +164,11 @@ class Skyboot_Portfolio_Elementor_widget extends \Elementor\Widget_Base {
             );
         $this->end_controls_section();
 
-        // Genarel settings tab
+        // General Settings tab
         $this->start_controls_section(
             'genarel_settings_section',
             [
-                'label' => esc_html__( 'Genarel Settings', 'skyboot-pg' ),
+                'label' => esc_html__( 'General Settings', 'skyboot-pg' ),
             ]
         );
             $this->add_control(
@@ -301,10 +301,10 @@ class Skyboot_Portfolio_Elementor_widget extends \Elementor\Widget_Base {
             $this->add_group_control(
                 Group_Control_Background::get_type(),
                 [
-                    'name' => 'overy_background',
+                    'name' => 'overlay_background',
                     'label' => __( 'Overlay Gradient Background', 'skyboot-pg' ),
                     'types' => [ 'classic', 'gradient'],
-                    'selector' => '{{WRAPPER}} {{CURRENT_ITEM}} .hover-effect-bg',
+                    'selector' => '{{WRAPPER}} .hover-effect-bg',
                     'condition' => [
                         'enable_overlay' => 'yes',
                     ]
@@ -523,6 +523,7 @@ class Skyboot_Portfolio_Elementor_widget extends \Elementor\Widget_Base {
         $enable_popup            = $this->get_settings_for_display('enable_popup');
         $enable_popup_content            = $this->get_settings_for_display('enable_popup_content');
         $popup_overlay_bg            = $this->get_settings_for_display('popup_overlay_bg');
+        
 
         // post settings
         $custom_order_ck    = $this->get_settings_for_display('custom_order');
@@ -530,18 +531,24 @@ class Skyboot_Portfolio_Elementor_widget extends \Elementor\Widget_Base {
         $orderby            = $this->get_settings_for_display('orderby');
 
         $settings   = $this->get_settings_for_display();
+       
         $id = $this->get_id();
+        $safe_id = sanitize_title_with_dashes( $id );
+        if ( '' === $safe_id ) {
+            $safe_id = 'skb-' . substr( wp_generate_password( 8, false, false ), 0, 8 );
+        }
+        $widget_id_class = 'skb-id-' . $safe_id;        
 
         ?>
 
     <!--Gallery area-->
-    <div class="skb-gellery-area skb-id-<?php echo $id; ?>">
+    <div class="skb-gellery-area <?php echo esc_attr( $widget_id_class ); ?>">    
          <div class="skb-row">
             <div class="skb-col-xs-12">
-                <?php if ( $enable_sec_heading == 'yes' ): ?>
+                <?php if ( 'yes' === $enable_sec_heading ): ?>
                 <div class="skb-section-title">
 
-                    <?php if ( $enable_sec_separator == 'yes' ): ?>
+                    <?php if ( 'yes' === $enable_sec_separator ): ?>
                     <span class="skb-section-title-separator"></span>
                     <?php endif;?>
 
@@ -556,17 +563,19 @@ class Skyboot_Portfolio_Elementor_widget extends \Elementor\Widget_Base {
                 </div>
                 <?php endif;?>
 
-                <?php if ( $enable_filter_menu == 'yes' ): ?>
+                <?php if ( 'yes' === $enable_filter_menu ): ?>
                 <div class="skb-button-group text-center">
-                    <button class="button is-checked" data-filter="*"><?php esc_html_e( 'All' , 'skyboot-pg' ); ?></button>
+                    <button class="button is-checked" data-filter="*" aria-label="<?php esc_html_e( 'All' , 'skyboot-pg' ); ?>"><?php esc_html_e( 'All' , 'skyboot-pg' ); ?></button>
                     <?php
                     $terms = get_terms( 'skyboot_portfolio_cat' );
-                     foreach( $terms as $term ) {                          
-                        $slug = $term->slug;
-                        $name = $term->name;                                    
-                    ?>
-                    <button class="button" data-filter=".<?php echo esc_html( $slug ); ?>"><?php echo esc_html( $name ); ?></button>
-                    <?php } ?>
+                    if ( ! is_wp_error( $terms ) && ! empty( $terms ) ) {
+                    foreach ( $terms as $term ) {
+                        $slug = sanitize_html_class( $term->slug );
+                        $name = $term->name; ?>
+                        <button class="button" data-filter=".<?php echo esc_attr( $slug ); ?>" aria-label="<?php printf( esc_attr__( 'Filter by %s', 'skyboot-pg' ), esc_attr( $name ) ); ?>">
+                            <?php echo esc_html( $name ); ?>
+                        </button>
+                    <?php } } ?>
                 </div>
                 <?php endif;?>
 
@@ -606,7 +615,6 @@ class Skyboot_Portfolio_Elementor_widget extends \Elementor\Widget_Base {
                                 }
                             }
 
-
                             $term_classes = implode( ' ', $term_slugs );
 
                             $col = isset( $settings['column_count'] ) ? absint( $settings['column_count'] ) : 4;
@@ -637,12 +645,12 @@ class Skyboot_Portfolio_Elementor_widget extends \Elementor\Widget_Base {
                                         <?php if ( isset( $enable_popup ) && 'yes' === $enable_popup ) : ?>
                                             <div class="skb-gallery-icon">
                                                 <a class="skb-popup vbox-item"
-                                                data-gall="gall1"
+                                                data-gall="gall-<?php echo esc_attr( $safe_id ); ?>"
                                                 <?php if ( isset( $enable_popup_content ) && 'yes' === $enable_popup_content ) : ?>
                                                     data-title="<?php echo esc_attr( $excerpt_or_content_safe ); ?>"
                                                 <?php endif; ?>
                                                 href="<?php echo esc_url( wp_get_attachment_url( get_post_thumbnail_id( get_the_ID() ), 'full' ) ); ?>">
-                                                <?php \Elementor\Icons_Manager::render_icon( $settings['set_icon'], [ 'aria-hidden' => 'true' ] ); ?>
+                                                <?php if ( ! empty( $settings['set_icon'] ) ) { \Elementor\Icons_Manager::render_icon( $settings['set_icon'], [ 'aria-hidden' => 'true' ] ); } ?>
                                                 </a>
                                             </div>                                            
                                         <?php endif; ?>
@@ -665,7 +673,6 @@ class Skyboot_Portfolio_Elementor_widget extends \Elementor\Widget_Base {
                     endif;
                 ?>
 
-
             </div>
         </div>
     </div>
@@ -673,65 +680,58 @@ class Skyboot_Portfolio_Elementor_widget extends \Elementor\Widget_Base {
     <script>
 
         jQuery(document).ready(function(){
-        /*isotop masonry*/
-        jQuery('.new').imagesLoaded( function() {
-            if(jQuery.fn.isotope){
-                var $portfolio = jQuery('.new');
-                $portfolio.isotope({
-                    itemSelector: '.skb-grid-item',
-                    filter: '*',
-                    resizesContainer: true,
-                    layoutMode: 'masonry',
-                    transitionDuration: '0.8s'          
-                });
-                jQuery('button').on('click', function(){
-                    jQuery('button').removeClass('is-checked');
-                    jQuery(this).addClass('is-checked');
-                    var selector = jQuery(this).attr('data-filter');
+            /*isotop masonry*/
+            jQuery('.new').imagesLoaded( function() {
+                if(jQuery.fn.isotope){
+                    var $portfolio = jQuery('.new');
                     $portfolio.isotope({
-                        filter: selector,
+                        itemSelector: '.skb-grid-item',
+                        filter: '*',
+                        resizesContainer: true,
+                        layoutMode: 'masonry',
+                        transitionDuration: '0.8s'          
                     });
-                });
-            };
-        });   
+                    jQuery('button').on('click', function(){
+                        jQuery('button').removeClass('is-checked');
+                        jQuery(this).addClass('is-checked');
+                        var selector = jQuery(this).attr('data-filter');
+                        $portfolio.isotope({
+                            filter: selector,
+                        });
+                    });
+                };
+            });   
 
-        // Gallery hover effect
-        jQuery('.skb-gallery-item').each( function() { jQuery(this).hoverdir(); } ); 
-
-        /* Venobox active*/
-        jQuery('.skb-popup').venobox({
-            border: '10px',             // default: '0'
-            numeratio: false,            // default: false
-            infinigall: true,
-
-            <?php if ( $popup_overlay_bg ): ?>
-            overlayColor: '<?php echo $popup_overlay_bg; ?>',
-            <?php endif; ?>
+            // Gallery hover effect
+            jQuery('.skb-gallery-item').each( function() { jQuery(this).hoverdir(); } ); 
             
-            bgcolor: '#ffffff',
-            arrowsColor:'#ffffff',
-            closeColor:'#ffffff',
-            spinColor: '#d2d2d2',
-            titleattr: 'data-title',
-            titlePosition: 'bottom',            
-            titleBackground: '#000000',
-            titleColor: '#fff',
-            spinColor: '#ffffff',       
-            spinner: 'cube-grid',       
-        });            
+            <?php $overlay = ! empty( $popup_overlay_bg ) ? $popup_overlay_bg : 'rgba(0,0,0,0.8)'; ?>
+
+            var $skbwrap = jQuery('.skb-gellery-area.<?php echo esc_js( $widget_id_class ); ?>');
+              $skbwrap.find('.skb-popup').venobox({
+                border: '10px',             // default: '0'
+                numeratio: false,            // default: false
+                infinigall: true,
+                overlayColor: '<?php echo esc_js( $overlay ); ?>',    
+                bgcolor: '#ffffff',
+                arrowsColor:'#ffffff',
+                closeColor:'#ffffff',
+                titleattr: 'data-title',
+                titlePosition: 'bottom',            
+                titleBackground: '#000000',
+                titleColor: '#fff',
+                spinColor: '#ffffff',       
+                spinner: 'cube-grid',       
+            });            
         });
-
-
-
     </script>    
-
         <?php
-
     }
 
     protected function content_template() {}
 
 }
 
-Plugin::instance()->widgets_manager->register_widget_type( new Skyboot_Portfolio_Elementor_widget() );
+Plugin::instance()->widgets_manager->register( new \Elementor\Skyboot_Portfolio_Elementor_widget() );
+
 

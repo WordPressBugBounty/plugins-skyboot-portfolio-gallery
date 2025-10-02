@@ -7,7 +7,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 function skyboot_portfolio_gallery_enqueue() {
 
     // Styles
-    wp_enqueue_style( 'skb-fontawesome', SKYBOOT_PORTFOLIO_GALLERY_PLUGIN_URL . 'assets/css/font-awesome.min.css', array(), '4.5.0' );
     wp_enqueue_style( 'skb-framework-css', SKYBOOT_PORTFOLIO_GALLERY_PLUGIN_URL . 'assets/css/skb-framework.css', array(), '1.0.0' );
     wp_enqueue_style( 'skb-venobox', SKYBOOT_PORTFOLIO_GALLERY_PLUGIN_URL . 'assets/css/venobox.css', array(), SKYBOOT_PORTFOLIO_GALLERY_VERSION );
     wp_enqueue_style( 'skyboot-portfolio-style', SKYBOOT_PORTFOLIO_GALLERY_PLUGIN_URL . 'assets/css/skyboot-portfolio-style.css', array(), SKYBOOT_PORTFOLIO_GALLERY_VERSION );

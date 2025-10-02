@@ -3,7 +3,7 @@
 Plugin Name: Skyboot Portfolio Gallery for Elementor
 Plugin URI:   https://skybootstrap.com/plugins/portfolio-gallery/
 Description:  Create a clean portfolio photo gallery on your Elementor website to showcase your work with masonry layouts and filterable image galleries.
-Version:      1.0.5
+Version:      1.0.6
 Author:       Skybootstrap
 Author URI:   https://skybootstrap.com/
 License:      GPLv3
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Skyboot Portfolio Gallery Version
-define( 'SKYBOOT_PORTFOLIO_GALLERY_VERSION', '1.0.5' );
+define( 'SKYBOOT_PORTFOLIO_GALLERY_VERSION', '1.0.6' );
 
 // Plugins URL
 define( 'SKYBOOT_PORTFOLIO_GALLERY_PLUGIN_URL', plugin_dir_url( __FILE__ ) );

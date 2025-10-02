@@ -7,7 +7,7 @@ Donate Link: https://buymeacoffee.com/skybootstrap
 Requires at least: 5.0
 Requires PHP: 7.4
 Tested up to: 6.8
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -111,12 +111,21 @@ Yes. Skyboot Portfolio Gallery works seamlessly with popular Elementor addons li
 == Screenshots ==
 
 == Changelog ==
+
+= 1.0.6 =
+* Fixed XSS vulnerability in portfolio widget.
+* Improved data sanitization & escaping (titles, excerpts, colors, slugs).
+* Added accessibility labels for filter buttons.
+* Fixed excerpt/content display consistency.
+* Code cleanup and simple bug fixes.
+* Compatible with Latest version of Elementor & WordPress
+* Replaced deprecated method for Elementor widget registration
+
 = 1.0.5 =
 * Security: Escaped all user-controlled output (titles, excerpts, data attributes, URLs).
 * Security: Sanitized taxonomy term slugs for class attributes.
 * Security: Guarded get_the_terms() and removed unsafe attribute content.
 * Compat: Use Elementor Icons Manager (SVG) and avoid duplicate Font Awesome loads.
-
 
 = 1.0.4 =
 * Tested with WordPress 6.8
